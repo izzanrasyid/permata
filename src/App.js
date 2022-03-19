@@ -6,6 +6,7 @@ import {
   Route,
 } from "react-router-dom";
 import Home from './Pages/Home';
+import Footer from './Components/Footer';
 
 const WebContainer = styled.div`
   height: 100vh;
@@ -19,6 +20,7 @@ function App() {
           <Route path="/" element={<Home />}/>
         </Routes>
       </Router>
+      <Footer />
     </WebContainer>
   );
 }
