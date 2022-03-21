@@ -24,10 +24,10 @@ const InputField = styled.input`
   }
 `;
 
-const Input = ({ type, placeholder, name }) => {
+const Input = ({ type, placeholder, name, onChange }) => {
   return (
     <Container>
-      <InputField type={type} placeholder={placeholder} name={name}></InputField>
+      <InputField type={type} placeholder={placeholder} name={name} onChange={onChange} />
     </Container>
   );
 };

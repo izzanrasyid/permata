@@ -13,7 +13,6 @@ const Wrapper = styled.div`
 `;
 
 const Button = ({color, text}) => {
-  console.log(text, 'text');
   return (
     <Wrapper color={color} >
       <Text size={'16px'} weight={'700'} color={'#FFF'}>{text}</Text>

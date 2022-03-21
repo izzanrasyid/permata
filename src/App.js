@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import {
   BrowserRouter as Router,
@@ -7,8 +7,10 @@ import {
 } from "react-router-dom";
 import Navbar from './Components/Navbar';
 import Footer from './Components/Footer';
+import Loading from './Components/Loading';
 import Home from './Pages/Home';
 import Login from './Pages/Login';
+import { useSelector } from "react-redux";
 
 const WebContainer = styled.div`
   height: 100vh;
@@ -16,14 +18,20 @@ const WebContainer = styled.div`
 
 function App() {
   const [isLogin, setIsLogin] = useState(false);
+  const loading = useSelector(state => state?.isLoading)
+
+  useEffect(() => {
+    console.log(loading, 'loading <<<<<<');
+  }, [loading]);
 
   return (
     <WebContainer>
-      { isLogin && (<Login setIsLogin={setIsLogin} />) }
-      <Navbar setIsLogin={setIsLogin} />
       <Router>
+        { loading && (<Loading />) }
+        { isLogin && (<Login setIsLogin={setIsLogin} isLoading={loading} />) }
+        <Navbar setIsLogin={setIsLogin} />
         <Routes>
-          <Route path="/" element={<Home />}/>
+          <Route exact path="/" element={<Home />}/>
         </Routes>
       </Router>
       <Footer />

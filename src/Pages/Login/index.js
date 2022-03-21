@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState } from "react";
+import { useNavigate } from 'react-router-dom';
 import {
   Container,
   LoginContainer,
@@ -11,8 +12,25 @@ import {
 import { Text } from "../../Components/Text";
 import Input from "../../Components/Input";
 import Button from "../../Components/Button";
+import { useDispatch } from "react-redux";
+import { setLogin } from "../../store/action";
 
-const Login = ({ setIsLogin }) => {
+const Login = ({ setIsLogin, isLoading }) => {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const [payload, setPayload] = useState({});
+
+  const onChange = (value, key) => {
+    setPayload({...payload, [key]: value.target.value});
+  };
+
+  const login = () => {
+    dispatch(setLogin(payload));
+    if (!isLoading) {
+      setIsLogin(false);
+      navigate('/');
+    };
+  };
 
   return (
     <Container>
@@ -21,12 +39,12 @@ const Login = ({ setIsLogin }) => {
           <Text size={'29px'} weight={'400'} color={'#42495B'}>Login</Text>
         </TitleWrapper>
         <InputWrapper>
-          <Input type={"text"} placeholder={"Username"} name={"username"} />
+          <Input type={"text"} placeholder={"Username"} name={"username"} onChange={(value) => onChange(value, 'username')} />
         </InputWrapper>
         <InputWrapper>
-          <Input type={"password"} placeholder={"Password"} name={"password"} />
+          <Input type={"password"} placeholder={"Password"} name={"password"} onChange={(value) => onChange(value, 'password')} />
         </InputWrapper>
-        <ButtonWrapper>
+        <ButtonWrapper onClick={login}>
           <Button text={'LOGIN'} color={'#4CAF50'}/>
         </ButtonWrapper>
         <ForgetPasswordWrapper>
