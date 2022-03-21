@@ -2,10 +2,10 @@ import React from 'react';
 import { NavbarContainer } from './styles';
 import Headerbar from './Headerbar/Headerbar';
 
-const Navbar = ({ setIsLogin }) => {
+const Navbar = ({ setIsLogin, toLogout }) => {
   return (
     <NavbarContainer>
-      <Headerbar setIsLogin={setIsLogin} />
+      <Headerbar setIsLogin={setIsLogin} toLogout={toLogout} />
     </NavbarContainer>
   );
 };

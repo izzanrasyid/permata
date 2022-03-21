@@ -16,8 +16,6 @@ const loginFailed = () => ({
 });
 
 export const setLogin = (payload) => dispatch => {
-  console.log(payload, '<<<<<');
-
   const request = {
     method: 'POST',
     headers: { 'Content-Type' : 'application/json'},
@@ -28,12 +26,10 @@ export const setLogin = (payload) => dispatch => {
   fetch('https://tasklogin.herokuapp.com/api/login', request)
     .then(response => response.json())
     .then(data => {
-      console.log(data, 'DATA');
       localStorage.setItem('access_token', data?.access_token)
       dispatch(loginSuccess(data));
     })
     .catch((err) => {
-      console.log(err, 'error');
       dispatch(loginFailed())
     });
   return { type: LOGIN, payload }

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import {
   BrowserRouter as Router,
@@ -8,6 +8,7 @@ import {
 import Navbar from './Components/Navbar';
 import Footer from './Components/Footer';
 import Loading from './Components/Loading';
+import Modal from './Components/Modal';
 import Home from './Pages/Home';
 import Login from './Pages/Login';
 import { useSelector } from "react-redux";
@@ -17,19 +18,22 @@ const WebContainer = styled.div`
 `;
 
 function App() {
+  
   const [isLogin, setIsLogin] = useState(false);
+  const [isLogout, setIsLogout] = useState(false);
   const loading = useSelector(state => state?.isLoading)
 
-  useEffect(() => {
-    console.log(loading, 'loading <<<<<<');
-  }, [loading]);
+  const toLogout = () => {
+    setIsLogout(true);
+  };
 
   return (
     <WebContainer>
       <Router>
         { loading && (<Loading />) }
         { isLogin && (<Login setIsLogin={setIsLogin} isLoading={loading} />) }
-        <Navbar setIsLogin={setIsLogin} />
+        { isLogout && (<Modal setIsLogout={setIsLogout}/>) }
+        <Navbar setIsLogin={setIsLogin} toLogout={toLogout} />
         <Routes>
           <Route exact path="/" element={<Home />}/>
         </Routes>

@@ -1,5 +1,4 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom'; 
 import { TanLogo } from '../../Icons';
 import Searchbar from '../../Searchbar';
 import { Text, Span } from '../../Text';
@@ -10,14 +9,8 @@ import {
   LoginWrapper
 } from './styles';
 
-const Headerbar = ({ setIsLogin }) => {
-  const navigate = useNavigate();
+const Headerbar = ({ setIsLogin, toLogout }) => {
   const token = localStorage.getItem('access_token');
-  
-  const logout = () => {
-    navigate('/');
-    localStorage.clear();
-  };
 
   return (
     <HeaderbarWrapper>
@@ -29,7 +22,7 @@ const Headerbar = ({ setIsLogin }) => {
       </SearchWrapper>
       {
         token ? 
-        <LoginWrapper onClick={logout}>
+        <LoginWrapper onClick={toLogout}>
           <Text size={'14px'} weight={'400'} color={'red'} >LOGOUT</Text>
         </LoginWrapper>
         :
