@@ -13,7 +13,7 @@ import { sponsors } from "./constant";
 const Container = styled.div`
   display: flex;
   flex-direction: column;
-  background: linear-gradient(180deg, rgba(66, 73, 91, 0.0001) -68.11%, #273341 74.28%);
+  background: linear-gradient(180deg, rgba(66, 73, 91, 0.0001) -68.11%, #277341 74.28%);
   width: 100vw;
 `;
 

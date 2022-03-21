@@ -15,7 +15,7 @@ const Copyright = () => {
   return (
     <Container>
       <Text size={'Copyright © PT TENAGA ALAMI NUSANTARA'} color={"#BEBEBE"}>
-        Copyright © PT TAN
+        Copyright © PT Hadapi Dengan Senyuman
       </Text>
     </Container>
   );

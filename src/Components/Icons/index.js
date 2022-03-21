@@ -7,7 +7,6 @@ import IconPinterest from "./IconPinterest";
 import IconTwitter from "./IconTwitter";
 import IconWhatsapp from "./IconWhatsapp";
 import IconYoutube from "./IconYoutube";
-import TanLogo from "./TanLogo";
 
 export {
   IconSearch,
@@ -19,5 +18,4 @@ export {
   IconTwitter,
   IconWhatsapp,
   IconYoutube,
-  TanLogo,
 };
