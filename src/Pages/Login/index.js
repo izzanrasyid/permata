@@ -6,6 +6,7 @@ import {
   TitleWrapper,
   InputWrapper,
   ForgetPasswordWrapper,
+  CheckboxWrapper,
   ButtonWrapper,
   RegisterWrapper
 } from "./styles";
@@ -22,6 +23,13 @@ const Login = ({ setIsLogin, isLoading }) => {
 
   const onChange = (value, key) => {
     setPayload({...payload, [key]: value.target.value});
+  };
+
+  const rememberMe = (value) => {
+    if (value.target.checked) {
+      return localStorage.setItem('autologin', true);
+    };
+    return;
   };
 
   const login = () => {
@@ -44,6 +52,10 @@ const Login = ({ setIsLogin, isLoading }) => {
         <InputWrapper>
           <Input type={"password"} placeholder={"Password"} name={"password"} onChange={(value) => onChange(value, 'password')} />
         </InputWrapper>
+        <CheckboxWrapper>
+          <input type={'checkbox'} value={'remember'} onChange={(value) => rememberMe(value)} />
+          <label>Remember me</label>
+        </CheckboxWrapper>
         <ButtonWrapper onClick={login}>
           <Button text={'LOGIN'} color={'#4CAF50'}/>
         </ButtonWrapper>

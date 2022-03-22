@@ -44,10 +44,12 @@ export const ButtonWrapper = styled.div`
   margin: 2%;
 `;
 
-const Modal = ({ setIsLogout }) => {
+const Modal = ({ setIsLogout, setIsLoggedIn }) => {
+
   const logout = () => {
     localStorage.clear();
     setIsLogout(false);
+    setIsLoggedIn(false);
   };
 
   const cancelLogout = () => {

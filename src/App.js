@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import {
   BrowserRouter as Router,
@@ -18,22 +18,33 @@ const WebContainer = styled.div`
 `;
 
 function App() {
-  
+  const loading = useSelector(state => state?.isLoading);
+  const rememberMe = localStorage.getItem('autologin');
+  const accessToken = localStorage.getItem('access_token');
   const [isLogin, setIsLogin] = useState(false);
   const [isLogout, setIsLogout] = useState(false);
-  const loading = useSelector(state => state?.isLoading)
+  const [isLoggedin, setIsLoggedin] = useState(false);
 
   const toLogout = () => {
     setIsLogout(true);
   };
 
+  useEffect(() => {
+    if (!rememberMe && accessToken) {
+      localStorage.clear();
+    };
+    if (rememberMe || accessToken) {
+      setIsLoggedin(true);
+    };
+  }, [rememberMe, accessToken]);
+
   return (
     <WebContainer>
       <Router>
         { loading && (<Loading />) }
-        { isLogin && (<Login setIsLogin={setIsLogin} isLoading={loading} />) }
-        { isLogout && (<Modal setIsLogout={setIsLogout}/>) }
-        <Navbar setIsLogin={setIsLogin} toLogout={toLogout} />
+        { isLogin && (<Login setIsLogin={setIsLogin} isLoading={loading}/>) }
+        { isLogout && (<Modal setIsLogout={setIsLogout} setIsLoggedIn={setIsLoggedin} />) }
+        <Navbar setIsLogin={setIsLogin} toLogout={toLogout} isLoggedin={isLoggedin} />
         <Routes>
           <Route exact path="/" element={<Home />}/>
         </Routes>

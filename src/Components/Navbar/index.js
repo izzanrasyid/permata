@@ -9,9 +9,7 @@ import {
 import Searchbar from '../Searchbar';
 import { Text, Span } from '../Text';
 
-const Navbar = ({ setIsLogin, toLogout }) => {
-  const token = localStorage.getItem('access_token');
-
+const Navbar = ({ setIsLogin, toLogout, isLoggedin }) => {
   return (
     <NavbarContainer>
       <HeaderbarWrapper>
@@ -22,7 +20,7 @@ const Navbar = ({ setIsLogin, toLogout }) => {
           <Searchbar />
         </SearchWrapper>
         {
-          token && token !== 'undefined' ? 
+          isLoggedin ? 
           <LoginWrapper onClick={toLogout}>
             <Text size={'14px'} weight={'400'} color={'red'} >LOGOUT</Text>
           </LoginWrapper>

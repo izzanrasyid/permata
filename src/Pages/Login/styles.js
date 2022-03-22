@@ -63,6 +63,10 @@ export const InputWrapper = styled.div`
   padding: 0 5% 2.5% 5%;
 `;
 
+export const CheckboxWrapper = styled.div`
+  padding: 0 5%;
+`;
+
 export const ButtonWrapper = styled.div`
   margin: 2% 5%;
 
