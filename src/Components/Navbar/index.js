@@ -22,7 +22,7 @@ const Navbar = ({ setIsLogin, toLogout }) => {
           <Searchbar />
         </SearchWrapper>
         {
-          token ? 
+          token && token !== 'undefined' ? 
           <LoginWrapper onClick={toLogout}>
             <Text size={'14px'} weight={'400'} color={'red'} >LOGOUT</Text>
           </LoginWrapper>
